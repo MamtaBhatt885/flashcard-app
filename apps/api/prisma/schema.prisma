@@ -1,0 +1,120 @@
+// Flashcard app data model (SQLite via Prisma).
+// The whole database is one file (apps/api/dev.db); its path comes from DATABASE_URL via prisma.config.ts.
+//
+//   User ─┬─< Deck ──< Card ──────────────┐
+//         │     │                          │
+//         └─< StudySession ──< Answer >────┘
+//
+// IDs: UUIDv7. Time-ordered, so new rows append to the end of each index instead of
+// landing at random positions (better locality than v4), and they're safe to expose in URLs.
+// Deletes cascade down the ownership tree: deleting a user removes their decks and sessions;
+// deleting a deck removes its cards and sessions; deleting a card or session removes its answers.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           String         @id @default(uuid(7))
+  email        String         @unique
+  passwordHash String
+  createdAt    DateTime       @default(now())
+  decks        Deck[]
+  sessions     StudySession[]
+}
+
+model Deck {
+  id          String         @id @default(uuid(7))
+  title       String
+  description String?
+  userId      String
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cards       Card[]
+  sessions    StudySession[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  // A user can't have two decks with the same title (the API answers 409 Conflict).
+  @@unique([userId, title])
+  // "My decks, most recently updated first": filter by owner, sort by updatedAt from the index.
+  @@index([userId, updatedAt])
+}
+
+model Card {
+  id      String   @id @default(uuid(7))
+  deckId  String
+  deck    Deck     @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  front   String
+  back    String
+  answers Answer[]
+
+  // SM-2 spaced-repetition schedule
+  easeFactor  Float    @default(2.5)
+  interval    Int      @default(0) // days
+  repetitions Int      @default(0) // consecutive correct answers
+  dueAt       DateTime @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // "Cards due in this deck": equality on deckId, range on dueAt. Also serves plain "cards in deck".
+  @@index([deckId, dueAt])
+}
+
+/// One sitting of studying a deck. Answers hang off it, so progress and history are queryable.
+model StudySession {
+  id          String    @id @default(uuid(7))
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deckId      String
+  deck        Deck      @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  /// Practice runs re-study missed cards without changing the SM-2 schedule.
+  practice    Boolean   @default(false)
+  /// Number of cards queued when the session started.
+  cardCount   Int
+  skipped     Int       @default(0)
+  startedAt   DateTime  @default(now())
+  /// Null while in progress.
+  completedAt DateTime?
+  answers     Answer[]
+
+  // "My recent sessions" and "sessions for this deck", newest first.
+  @@index([userId, startedAt])
+  @@index([deckId, startedAt])
+}
+
+/// A single Correct/Incorrect response to a card within a session.
+/// A card can be answered twice in one session (a missed card comes back once).
+model Answer {
+  id         String       @id @default(uuid(7))
+  sessionId  String
+  session    StudySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  cardId     String
+  card       Card         @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  correct    Boolean
+  answeredAt DateTime     @default(now())
+
+  // Answers in a session, in order (session summary).
+  @@index([sessionId, answeredAt])
+  // A card's answer history (per-card stats).
+  @@index([cardId, answeredAt])
+}
+
+/// Rate-limit counters (login/signup attempts), kept in the database instead of process memory,
+/// so limits survive API restarts and are shared by every API process using this database.
+/// Key = limiter prefix + client IP, e.g. "auth:203.0.113.7".
+model RateLimit {
+  key     String @id
+  hits    Int
+  /// Window end as epoch milliseconds: an integer, so the atomic SQL in rateLimitStore.ts
+  /// compares numbers instead of depending on Prisma's text format for DateTime in SQLite.
+  resetAt BigInt
+
+  // Lets the cleanup job delete expired counters without scanning the table.
+  @@index([resetAt])
+}

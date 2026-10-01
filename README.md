@@ -102,6 +102,3 @@ The REST API lives under `/api`:
 - **Study sessions:** `/decks/:deckId/sessions`, `/sessions/:id`, `/sessions/:id/answers`, `/sessions/:id/complete`
 
 See **[apps/api/API.md](apps/api/API.md)** for every endpoint and status code, and **[CONTRACT.md](CONTRACT.md)** for the data structures.
-# flashcard-app
-# flashcard-app
-# flashcard-app

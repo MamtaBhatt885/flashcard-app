@@ -1,0 +1,20 @@
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+apps/api/src/generated/
+
+# env files: commit only the *.example versions
+.env
+.env.*
+!.env.example
+
+# local SQLite database
+*.db
+*.db-journal
+
+# Editor settings
+.idea/
+.vscode/
+.DS_Store
