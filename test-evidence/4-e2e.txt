@@ -1,0 +1,196 @@
+
+Running 9 tests using 1 worker
+
+  ✓  1 [chromium] › e2e/edge-cases.spec.ts:8:3 › studying › keyboard only: Space flips, → correct, ← incorrect, S skips (968ms)
+  ✘  2 [chromium] › e2e/edge-cases.spec.ts:33:3 › studying › practice missed cards: runs only the missed ones and doesn’t change the schedule (30.1s)
+  ✓  3 [chromium] › e2e/edge-cases.spec.ts:55:3 › studying › an empty deck can’t be studied; a studied deck says nothing is due (1.1s)
+  ✘  4 [chromium] › e2e/edge-cases.spec.ts:69:3 › auth › login expiring mid-study → sent to sign in with an explanation, then back to where you were (30.1s)
+  ✘  5 [chromium] › e2e/edge-cases.spec.ts:85:3 › decks › delete via the confirm dialog: Cancel and Esc keep the deck, Confirm removes it (30.1s)
+  ✘  6 [chromium] › e2e/edge-cases.spec.ts:109:3 › decks › validation messages reach the UI: empty title, and a 409 duplicate title (30.0s)
+  ✓  7 [chromium] › e2e/edge-cases.spec.ts:122:3 › decks › mistyped or unknown deck URLs show "Deck not found", not a raw error (1.2s)
+  ✓  8 [chromium] › e2e/edge-cases.spec.ts:131:1 › phone-sized screen: deck list and study mode fit without sideways scrolling (1.1s)
+  ✘  9 [chromium] › e2e/study-flow.spec.ts:4:1 › create a deck, add cards, study it, and check the summary (30.1s)
+
+
+  1) [chromium] › e2e/edge-cases.spec.ts:33:3 › studying › practice missed cards: runs only the missed ones and doesn’t change the schedule 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'New deck' })
+
+
+       at helpers.ts:24
+
+      22 | export async function createDeck(page: Page, title: string, description?: string) {
+      23 |   const first = page.getByRole('button', { name: 'Create your first deck' });
+    > 24 |   await (await first.isVisible() ? first : page.getByRole('button', { name: 'New deck' })).click();
+         |                                                                                            ^
+      25 |   await page.getByLabel('Title').fill(title);
+      26 |   if (description) await page.getByLabel('Description (optional)').fill(description);
+      27 |   await page.getByRole('button', { name: 'Create deck' }).click();
+        at createDeck (/Users/mamtabhatt/Desktop/lab5/apps/web/e2e/helpers.ts:24:92)
+        at /Users/mamtabhatt/Desktop/lab5/apps/web/e2e/edge-cases.spec.ts:35:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/edge-cases-studying-practi-3d9e7-doesn’t-change-the-schedule-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/edge-cases-studying-practi-3d9e7-doesn’t-change-the-schedule-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/edge-cases-studying-practi-3d9e7-doesn’t-change-the-schedule-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/edge-cases-studying-practi-3d9e7-doesn’t-change-the-schedule-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/edge-cases.spec.ts:69:3 › auth › login expiring mid-study → sent to sign in with an explanation, then back to where you were 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Show answer' })
+
+
+       at helpers.ts:44
+
+      42 | /** Reveals the current card and grades it with the on-screen buttons. */
+      43 | export async function answer(page: Page, correct: boolean) {
+    > 44 |   await page.getByRole('button', { name: 'Show answer' }).click();
+         |                                                           ^
+      45 |   await page.getByRole('button', { name: correct ? '✓ Correct' : '✗ Incorrect' }).click();
+      46 | }
+      47 |
+        at answer (/Users/mamtabhatt/Desktop/lab5/apps/web/e2e/helpers.ts:44:59)
+        at /Users/mamtabhatt/Desktop/lab5/apps/web/e2e/edge-cases.spec.ts:76:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/edge-cases-auth-login-expi-1018a-then-back-to-where-you-were-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/edge-cases-auth-login-expi-1018a-then-back-to-where-you-were-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/edge-cases-auth-login-expi-1018a-then-back-to-where-you-were-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/edge-cases-auth-login-expi-1018a-then-back-to-where-you-were-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/edge-cases.spec.ts:85:3 › decks › delete via the confirm dialog: Cancel and Esc keep the deck, Confirm removes it 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'New deck' })
+
+
+       at helpers.ts:24
+
+      22 | export async function createDeck(page: Page, title: string, description?: string) {
+      23 |   const first = page.getByRole('button', { name: 'Create your first deck' });
+    > 24 |   await (await first.isVisible() ? first : page.getByRole('button', { name: 'New deck' })).click();
+         |                                                                                            ^
+      25 |   await page.getByLabel('Title').fill(title);
+      26 |   if (description) await page.getByLabel('Description (optional)').fill(description);
+      27 |   await page.getByRole('button', { name: 'Create deck' }).click();
+        at createDeck (/Users/mamtabhatt/Desktop/lab5/apps/web/e2e/helpers.ts:24:92)
+        at /Users/mamtabhatt/Desktop/lab5/apps/web/e2e/edge-cases.spec.ts:87:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/edge-cases-decks-delete-vi-060ec-the-deck-Confirm-removes-it-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/edge-cases-decks-delete-vi-060ec-the-deck-Confirm-removes-it-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/edge-cases-decks-delete-vi-060ec-the-deck-Confirm-removes-it-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/edge-cases-decks-delete-vi-060ec-the-deck-Confirm-removes-it-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › e2e/edge-cases.spec.ts:109:3 › decks › validation messages reach the UI: empty title, and a 409 duplicate title 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'New deck' })
+
+
+       at helpers.ts:24
+
+      22 | export async function createDeck(page: Page, title: string, description?: string) {
+      23 |   const first = page.getByRole('button', { name: 'Create your first deck' });
+    > 24 |   await (await first.isVisible() ? first : page.getByRole('button', { name: 'New deck' })).click();
+         |                                                                                            ^
+      25 |   await page.getByLabel('Title').fill(title);
+      26 |   if (description) await page.getByLabel('Description (optional)').fill(description);
+      27 |   await page.getByRole('button', { name: 'Create deck' }).click();
+        at createDeck (/Users/mamtabhatt/Desktop/lab5/apps/web/e2e/helpers.ts:24:92)
+        at /Users/mamtabhatt/Desktop/lab5/apps/web/e2e/edge-cases.spec.ts:111:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/edge-cases-decks-validatio-bc442-e-and-a-409-duplicate-title-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/edge-cases-decks-validatio-bc442-e-and-a-409-duplicate-title-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/edge-cases-decks-validatio-bc442-e-and-a-409-duplicate-title-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/edge-cases-decks-validatio-bc442-e-and-a-409-duplicate-title-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › e2e/study-flow.spec.ts:4:1 › create a deck, add cards, study it, and check the summary 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'New deck' })
+
+
+       at helpers.ts:24
+
+      22 | export async function createDeck(page: Page, title: string, description?: string) {
+      23 |   const first = page.getByRole('button', { name: 'Create your first deck' });
+    > 24 |   await (await first.isVisible() ? first : page.getByRole('button', { name: 'New deck' })).click();
+         |                                                                                            ^
+      25 |   await page.getByLabel('Title').fill(title);
+      26 |   if (description) await page.getByLabel('Description (optional)').fill(description);
+      27 |   await page.getByRole('button', { name: 'Create deck' }).click();
+        at createDeck (/Users/mamtabhatt/Desktop/lab5/apps/web/e2e/helpers.ts:24:92)
+        at /Users/mamtabhatt/Desktop/lab5/apps/web/e2e/study-flow.spec.ts:8:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/study-flow-create-a-deck-a-ff7f0-dy-it-and-check-the-summary-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/study-flow-create-a-deck-a-ff7f0-dy-it-and-check-the-summary-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/study-flow-create-a-deck-a-ff7f0-dy-it-and-check-the-summary-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/study-flow-create-a-deck-a-ff7f0-dy-it-and-check-the-summary-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [chromium] › e2e/edge-cases.spec.ts:33:3 › studying › practice missed cards: runs only the missed ones and doesn’t change the schedule 
+    [chromium] › e2e/edge-cases.spec.ts:69:3 › auth › login expiring mid-study → sent to sign in with an explanation, then back to where you were 
+    [chromium] › e2e/edge-cases.spec.ts:85:3 › decks › delete via the confirm dialog: Cancel and Esc keep the deck, Confirm removes it 
+    [chromium] › e2e/edge-cases.spec.ts:109:3 › decks › validation messages reach the UI: empty title, and a 409 duplicate title 
+    [chromium] › e2e/study-flow.spec.ts:4:1 › create a deck, add cards, study it, and check the summary 
+  4 passed (2.6m)

@@ -20,8 +20,12 @@ export async function signIn(page: Page, email: string) {
 
 /** Creates a deck from the deck list and lands on its page. */
 export async function createDeck(page: Page, title: string, description?: string) {
-  const first = page.getByRole('button', { name: 'Create your first deck' });
-  await (await first.isVisible() ? first : page.getByRole('button', { name: 'New deck' })).click();
+  // Wait for the deck list to load, then click whichever button it shows:
+  // "Create your first deck" on an empty account, "New deck" otherwise.
+  const openForm = page
+    .getByRole('button', { name: 'Create your first deck' })
+    .or(page.getByRole('button', { name: 'New deck' }));
+  await openForm.first().click();
   await page.getByLabel('Title').fill(title);
   if (description) await page.getByLabel('Description (optional)').fill(description);
   await page.getByRole('button', { name: 'Create deck' }).click();

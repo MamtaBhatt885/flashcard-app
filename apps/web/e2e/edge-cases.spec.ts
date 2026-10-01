@@ -71,6 +71,8 @@ test.describe('auth', () => {
     await createDeck(page, 'Expiry');
     await addCards(page, [['q', 'a']]);
     await page.getByRole('button', { name: /^Study/ }).click();
+    // Wait until the session has loaded and a card is showing, THEN let the login expire.
+    await expect(page.getByRole('button', { name: 'Show answer' })).toBeVisible();
     const studyUrl = page.url();
     await context.clearCookies(); // the auth cookie expires
     await answer(page, true);

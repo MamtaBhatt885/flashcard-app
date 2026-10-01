@@ -1,0 +1,85 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.2 [39m[90m/Users/mamtabhatt/Desktop/lab5/apps/web[39m
+
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mstart: loads the queue and resets counters[32m 1[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mflip toggles the card[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mignores answers before the card is flipped[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mcorrect: removes the card, counts it, un-flips[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mincorrect: sends the card to the back once and records it as missed[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22ma second miss on the same card moves on, so the session never gets stuck[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mskip: moves on without scoring[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mactions on an empty or finished session are no-ops[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mscore: percent of answered cards (skips excluded)[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mpractice run: restarts with only the missed cards and a fresh score[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mdoes not mutate the previous state[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mskipping a card you already missed still keeps it in the summary’s "to review" list[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mskipping while the answer is showing un-flips the next card[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/study/studyReducer.test.ts[2m > [22mstudyReducer[2m > [22mprogress never goes backwards when a missed card is re-queued[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/contracts.test.ts[2m > [22mshared schemas[2m > [22mCard: accepts the API shape[32m 2[2mms[22m[39m
+ [32m✓[39m src/lib/contracts.test.ts[2m > [22mshared schemas[2m > [22mdates must be ISO 8601 UTC strings: not epoch numbers, not other formats[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/contracts.test.ts[2m > [22mshared schemas[2m > [22mfields are camelCase: snake_case keys are a contract violation[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/contracts.test.ts[2m > [22mshared schemas[2m > [22mDeck: description is nullable but required; extra fields are stripped, not fatal[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/contracts.test.ts[2m > [22mshared schemas[2m > [22mDeckDetail validates every nested card[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/contracts.test.ts[2m > [22mshared schemas[2m > [22mStudySession: completedAt is an ISO string or null while in progress[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/contracts.test.ts[2m > [22mshared schemas[2m > [22mApiError: message required, details are per-field string arrays[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/contracts.test.ts[2m > [22mapi() enforces the contracts at runtime[2m > [22mreturns parsed data when the response matches[32m 2[2mms[22m[39m
+ [32m✓[39m src/lib/contracts.test.ts[2m > [22mapi() enforces the contracts at runtime[2m > [22mthrows ContractError (instead of passing bad data on) when it doesn’t[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/contracts.test.ts[2m > [22mapi() enforces the contracts at runtime[2m > [22mparses error bodies with apiErrorSchema, and survives non-JSON errors (e.g. a proxy page)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/errors.test.ts[2m > [22mapi() error classification[2m > [22ma failed fetch (server down) becomes a NetworkError[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/errors.test.ts[2m > [22mapi() error classification[2m > [22man error status becomes an ApiError with the server message[32m 2[2mms[22m[39m
+ [32m✓[39m src/lib/errors.test.ts[2m > [22merrorMessage()[2m > [22msays "can’t reach the server" only for real network failures[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/errors.test.ts[2m > [22merrorMessage()[2m > [22mBEFORE this fix, a plain bug was misreported as the server being down; now it isn’t[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/errors.test.ts[2m > [22misNotFound() (a mistyped URL shows "Deck not found", not a raw error)[2m > [22m404 → not found[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/errors.test.ts[2m > [22misNotFound() (a mistyped URL shows "Deck not found", not a raw error)[2m > [22m400 for a malformed id in the URL → not found[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/errors.test.ts[2m > [22misNotFound() (a mistyped URL shows "Deck not found", not a raw error)[2m > [22m400 for an invalid body → NOT not-found[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/errors.test.ts[2m > [22misNotFound() (a mistyped URL shows "Deck not found", not a raw error)[2m > [22mother failures → NOT not-found[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/errors.test.ts[2m > [22merrorMessage() for a generic 400[2m > [22mshows the first field reason instead of "Invalid input"[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mservice registry[2m > [22mcovers every method on every service (a new method must be added here)[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mauthApi.me[2m > [22maccepts a response that matches the shared schema[32m 2[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mauthApi.me[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mauthApi.login[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mauthApi.login[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mauthApi.signup[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mauthApi.signup[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mauthApi.logout[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mauthApi.logout[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mdecksApi.list[2m > [22maccepts a response that matches the shared schema[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mdecksApi.list[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mdecksApi.get[2m > [22maccepts a response that matches the shared schema[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mdecksApi.get[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mdecksApi.create[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mdecksApi.create[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mdecksApi.update[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mdecksApi.update[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mdecksApi.remove[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mdecksApi.remove[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mcardsApi.create[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mcardsApi.create[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mcardsApi.update[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mcardsApi.update[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mcardsApi.remove[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mcardsApi.remove[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mstudyApi.start[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mstudyApi.start[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mstudyApi.answer[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mstudyApi.answer[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mstudyApi.complete[2m > [22maccepts a response that matches the shared schema[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mstudyApi.complete[2m > [22mrejects a response that breaks the contract (never passes bad data on)[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/services.contract.test.ts[2m > [22mno bypasses[2m > [22monly lib/apiClient.ts calls fetch()[32m 0[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22mrenders labeled fields[32m 15[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22mis controlled: typing updates the value and the character counter[32m 55[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22mblocks an empty submit, shows the schema error, and focuses the field[32m 11[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22mhides errors until the field is touched, then updates them live[32m 24[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22mtreats a whitespace-only title as empty (schema trims)[32m 23[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22menforces the shared max length[32m 19[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22msubmits trimmed values and omits a blank description[32m 43[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22medit mode: prefilled, Save disabled until something changes[32m 27[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22mshows a server error and wires up Cancel[32m 9[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22mcan’t be double-submitted while the save is in flight[32m 33[2mms[22m[39m
+ [32m✓[39m src/features/decks/components/DeckForm.test.tsx[2m > [22mDeckForm[2m > [22mkeeps what you typed when the server rejects it (e.g. 409 duplicate title)[32m 37[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+[2m      Tests [22m [1m[32m76 passed[39m[22m[90m (76)[39m
+[2m   Start at [22m 01:05:50
+[2m   Duration [22m 846ms[2m (environment 72%, tests 13%, transform 8%, import 7%)[22m
+

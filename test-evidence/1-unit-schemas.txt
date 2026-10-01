@@ -1,0 +1,37 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.2 [39m[90m/Users/mamtabhatt/Desktop/lab5/packages/shared[39m
+
+ [32m✓[39m dist/schemas.test.js[2m > [22mcredentialsSchema[2m > [22mnormalizes email: trims and lowercases before validating[32m 1[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mcredentialsSchema[2m > [22mrejects invalid emails, short passwords, and overlong input[32m 1[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mcredentialsSchema[2m > [22mis strict: unknown keys are rejected, not silently dropped[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mdeckInputSchema[2m > [22mtrims the title and requires it[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mdeckInputSchema[2m > [22menforces the shared length limits exactly at the boundary[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mdeckInputSchema[2m > [22mtreats omitted, empty and whitespace-only descriptions the same (undefined)[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mdeckInputSchema[2m > [22mrejects mass-assignment attempts[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mcardInputSchema[2m > [22mrequires both sides, trimmed, within the limit[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mcardInputSchema[2m > [22mcan’t set the schedule or move the card[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mstartSessionSchema[2m > [22mdefaults to a normal (non-practice) session[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mstartSessionSchema[2m > [22mpractice requires cardIds; cardIds require practice[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22mstartSessionSchema[2m > [22mcardIds: UUIDs only, no duplicates, 1..MAX_SESSION_CARDS[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22manswer/complete schemas[2m > [22manswer needs a UUID and a real boolean (no "true" strings)[32m 0[2mms[22m[39m
+ [32m✓[39m dist/schemas.test.js[2m > [22manswer/complete schemas[2m > [22mskipped is a whole number within 0..MAX_SESSION_CARDS[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mcredentialsSchema[2m > [22mnormalizes email: trims and lowercases before validating[32m 1[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mcredentialsSchema[2m > [22mrejects invalid emails, short passwords, and overlong input[32m 1[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mcredentialsSchema[2m > [22mis strict: unknown keys are rejected, not silently dropped[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mdeckInputSchema[2m > [22mtrims the title and requires it[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mdeckInputSchema[2m > [22menforces the shared length limits exactly at the boundary[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mdeckInputSchema[2m > [22mtreats omitted, empty and whitespace-only descriptions the same (undefined)[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mdeckInputSchema[2m > [22mrejects mass-assignment attempts[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mcardInputSchema[2m > [22mrequires both sides, trimmed, within the limit[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mcardInputSchema[2m > [22mcan’t set the schedule or move the card[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mstartSessionSchema[2m > [22mdefaults to a normal (non-practice) session[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mstartSessionSchema[2m > [22mpractice requires cardIds; cardIds require practice[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22mstartSessionSchema[2m > [22mcardIds: UUIDs only, no duplicates, 1..MAX_SESSION_CARDS[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22manswer/complete schemas[2m > [22manswer needs a UUID and a real boolean (no "true" strings)[32m 0[2mms[22m[39m
+ [32m✓[39m src/schemas.test.ts[2m > [22manswer/complete schemas[2m > [22mskipped is a whole number within 0..MAX_SESSION_CARDS[32m 0[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m28 passed[39m[22m[90m (28)[39m
+[2m   Start at [22m 01:03:11
+[2m   Duration [22m 92ms[2m (import 51%, transform 34%, tests 11%, worker 4%)[22m
+
